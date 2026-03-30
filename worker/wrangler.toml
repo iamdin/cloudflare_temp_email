@@ -1,0 +1,20 @@
+name = "cloudflare_temp_email"
+main = "src/worker.ts"
+compatibility_date = "2025-04-01"
+compatibility_flags = [ "nodejs_compat" ]
+keep_vars = true
+
+# Frontend assets bundled with worker
+[assets]
+directory = "../frontend/dist/"
+binding = "ASSETS"
+run_worker_first = true
+
+# Daily auto cleanup
+[triggers]
+crons = [ "0 0 * * *" ]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "cloudflare-temp-email-db"
+database_id = "d9dfe8f5-0b9d-422e-a8ad-bac59fa2d31d"
